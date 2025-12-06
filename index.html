@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAXIMON | Creative Problem Solving for the Digital Age</title>
+    <meta name="description" content="MAXIMON LLC - A creative holding company powering Chipahauk, Chipahost, and Playt. Digital solutions for the modern age.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #09090b;
+            --bg-elevated: #18181b;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --text-dim: #71717a;
+            --accent: #e4e4e7;
+            --border: #27272a;
+            --border-hover: #3f3f46;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .wordmark {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .logo-m {
+            width: 56px;
+            height: 56px;
+            position: relative;
+        }
+
+        .logo-m svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .company-name {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .tagline {
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.15s forwards;
+        }
+
+        .ventures {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.3s forwards;
+        }
+
+        .venture {
+            text-decoration: none;
+            color: var(--text);
+            padding: 2.5rem 2rem;
+            background: var(--bg);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .venture:hover {
+            background: var(--bg-elevated);
+        }
+
+        .venture-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .venture-name::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2371717a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 17L17 7M17 7H7M17 7v10'/%3E%3C/svg%3E");
+            background-size: contain;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.25s ease;
+        }
+
+        .venture:hover .venture-name::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .venture-desc {
+            font-size: 0.9375rem;
+            color: var(--text-dim);
+            font-weight: 400;
+        }
+
+        .contact {
+            margin-top: 4rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.45s forwards;
+        }
+
+        .contact-label {
+            font-size: 0.8125rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        .contact a:hover {
+            color: var(--text-muted);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.8125rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        footer a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--text);
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .wordmark {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo-m {
+                width: 48px;
+                height: 48px;
+            }
+
+            .ventures {
+                grid-template-columns: 1fr;
+            }
+
+            .venture {
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="hero">
+            <div class="wordmark">
+                <div class="logo-m">
+                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="54" height="54" rx="12" stroke="#3f3f46" stroke-width="1.5"/>
+                        <path d="M14 42V18L28 32L42 18V42" stroke="#fafafa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 18L28 32L42 18" stroke="#fafafa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="company-name">MAXIMON</span>
+            </div>
+            <p class="tagline">Creative Problem Solving for the Digital Age</p>
+        </div>
+
+        <div class="ventures">
+            <a href="https://chipahauk.com" target="_blank" rel="noopener noreferrer" class="venture">
+                <div class="venture-name">Chipahauk</div>
+                <div class="venture-desc">Web & Graphic Design</div>
+            </a>
+            <a href="https://chipahost.com" target="_blank" rel="noopener noreferrer" class="venture">
+                <div class="venture-name">Chipahost</div>
+                <div class="venture-desc">Web Hosting Solutions</div>
+            </a>
+            <a href="https://playt.app" target="_blank" rel="noopener noreferrer" class="venture">
+                <div class="venture-name">Playt</div>
+                <div class="venture-desc">AI Food Photography</div>
+            </a>
+        </div>
+
+        <div class="contact">
+            <div class="contact-label">Get in touch</div>
+            <a href="mailto:hello@maximon.biz">hello@maximon.biz</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/terms.html">Terms of Service</a>
+                <a href="/privacy.html">Privacy Policy</a>
+            </div>
+            <div class="footer-info">
+                <span>227 Penn Ave, Edison, NJ 08817</span>
+                <span>&copy; 2025 MAXIMON LLC</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
