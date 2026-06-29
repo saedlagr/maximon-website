@@ -239,17 +239,42 @@
             position: relative;
             text-decoration: none;
             color: var(--text);
-            padding: 1.75rem;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
             transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
             overflow: hidden;
             opacity: 0;
             animation: fadeUp 0.7s ease forwards;
+        }
+
+        .venture-thumb {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            object-position: top center;
+            background: #0c0c0f;
+            border-bottom: 1px solid var(--border);
+            filter: saturate(1.02);
+            transition: transform 0.4s ease;
+        }
+
+        .venture:hover .venture-thumb {
+            transform: scale(1.03);
+        }
+
+        .venture-body {
+            position: relative;
+            z-index: 1;
+            padding: 1.5rem 1.75rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            flex: 1;
         }
 
         .venture:nth-child(1) { animation-delay: 0.45s; --accent: #818cf8; }
@@ -471,63 +496,81 @@
 
             <div class="ventures">
                 <a href="https://wraptor.io" target="_blank" rel="noopener noreferrer" class="venture">
-                    <div class="venture-top">
-                        <span class="venture-tag">Software</span>
-                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    <img class="venture-thumb" src="/thumbs/wraptor.jpg" alt="Wraptor website preview" loading="lazy" width="1280" height="800">
+                    <div class="venture-body">
+                        <div class="venture-top">
+                            <span class="venture-tag">Software</span>
+                            <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </div>
+                        <div class="venture-name">Wraptor</div>
+                        <div class="venture-desc">All-in-one platform for vehicle wrap shops — CRM, lead generation, AI design studio, and the installer network.</div>
+                        <div class="venture-domain">wraptor.io</div>
                     </div>
-                    <div class="venture-name">Wraptor</div>
-                    <div class="venture-desc">All-in-one platform for vehicle wrap shops — CRM, lead generation, AI design studio, and the installer network.</div>
-                    <div class="venture-domain">wraptor.io</div>
                 </a>
 
                 <a href="https://chipahost.com" target="_blank" rel="noopener noreferrer" class="venture">
-                    <div class="venture-top">
-                        <span class="venture-tag">Infrastructure</span>
-                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    <img class="venture-thumb" src="/thumbs/chipahost.jpg" alt="Chipahost website preview" loading="lazy" width="1280" height="800">
+                    <div class="venture-body">
+                        <div class="venture-top">
+                            <span class="venture-tag">Infrastructure</span>
+                            <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </div>
+                        <div class="venture-name">Chipahost</div>
+                        <div class="venture-desc">Custom websites for small business — designed, hosted, and maintained. Online in days, not months.</div>
+                        <div class="venture-domain">chipahost.com</div>
                     </div>
-                    <div class="venture-name">Chipahost</div>
-                    <div class="venture-desc">Fast, reliable web hosting solutions for businesses and creators who need their sites always on.</div>
-                    <div class="venture-domain">chipahost.com</div>
                 </a>
 
                 <a href="https://chipahauk.com" target="_blank" rel="noopener noreferrer" class="venture">
-                    <div class="venture-top">
-                        <span class="venture-tag">Creative</span>
-                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    <img class="venture-thumb" src="/thumbs/chipahauk.jpg" alt="Chipahauk website preview" loading="lazy" width="1280" height="800">
+                    <div class="venture-body">
+                        <div class="venture-top">
+                            <span class="venture-tag">Creative</span>
+                            <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </div>
+                        <div class="venture-name">Chipahauk</div>
+                        <div class="venture-desc">Web and graphic design studio crafting brands, sites, and visual identities that stand out.</div>
+                        <div class="venture-domain">chipahauk.com</div>
                     </div>
-                    <div class="venture-name">Chipahauk</div>
-                    <div class="venture-desc">Web and graphic design studio crafting brands, sites, and visual identities that stand out.</div>
-                    <div class="venture-domain">chipahauk.com</div>
                 </a>
 
                 <a href="https://quoteri.com" target="_blank" rel="noopener noreferrer" class="venture">
-                    <div class="venture-top">
-                        <span class="venture-tag">Software</span>
-                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    <img class="venture-thumb" src="/thumbs/quoteri.jpg" alt="Quoteri website preview" loading="lazy" width="1280" height="800">
+                    <div class="venture-body">
+                        <div class="venture-top">
+                            <span class="venture-tag">Software</span>
+                            <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </div>
+                        <div class="venture-name">Quoteri</div>
+                        <div class="venture-desc">All-in-one business app for tradespeople — quotes, invoices, job tracking, and AI tools across 100+ trades.</div>
+                        <div class="venture-domain">quoteri.com</div>
                     </div>
-                    <div class="venture-name">Quoteri</div>
-                    <div class="venture-desc">Online quote builder for tradespeople — industry calculators, branded PDF templates, and pro estimates in minutes.</div>
-                    <div class="venture-domain">quoteri.com</div>
                 </a>
 
                 <a href="https://brokertraq.com" target="_blank" rel="noopener noreferrer" class="venture">
-                    <div class="venture-top">
-                        <span class="venture-tag">Software</span>
-                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    <img class="venture-thumb" src="/thumbs/brokertraq.jpg" alt="BrokerTraq website preview" loading="lazy" width="1280" height="800">
+                    <div class="venture-body">
+                        <div class="venture-top">
+                            <span class="venture-tag">Software</span>
+                            <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </div>
+                        <div class="venture-name">BrokerTraq</div>
+                        <div class="venture-desc">A social trust network for freight — rate carriers and brokers, share intel, and track compliance in one platform.</div>
+                        <div class="venture-domain">brokertraq.com</div>
                     </div>
-                    <div class="venture-name">BrokerTraq</div>
-                    <div class="venture-desc">Freight compliance and carrier-trust platform — monitor authority, track bonds, and verify carriers in real time.</div>
-                    <div class="venture-domain">brokertraq.com</div>
                 </a>
 
                 <a href="https://stavryn.com" target="_blank" rel="noopener noreferrer" class="venture">
-                    <div class="venture-top">
-                        <span class="venture-tag">AI</span>
-                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    <img class="venture-thumb" src="/thumbs/stavryn.jpg" alt="Stavryn website preview" loading="lazy" width="1280" height="800">
+                    <div class="venture-body">
+                        <div class="venture-top">
+                            <span class="venture-tag">AI</span>
+                            <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                        </div>
+                        <div class="venture-name">Stavryn</div>
+                        <div class="venture-desc">Private, on-premise AI infrastructure and custom agents — built and run on hardware you own.</div>
+                        <div class="venture-domain">stavryn.com</div>
                     </div>
-                    <div class="venture-name">Stavryn</div>
-                    <div class="venture-desc">Private, on-premise AI infrastructure and custom agents — built and run on hardware you own.</div>
-                    <div class="venture-domain">stavryn.com</div>
                 </a>
             </div>
         </section>
