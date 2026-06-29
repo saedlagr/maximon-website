@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAXIMON | Creative Problem Solving for the Digital Age</title>
-    <meta name="description" content="MAXIMON LLC - A creative holding company powering Chipahauk, Chipahost, and Playt. Digital solutions for the modern age.">
+    <meta name="description" content="MAXIMON LLC is a creative holding company building and operating digital ventures — Chipahauk, Chipahost, Wraptor, and Stavryn.">
+    <meta name="theme-color" content="#09090b">
+    <meta property="og:title" content="MAXIMON LLC">
+    <meta property="og:description" content="A creative holding company building digital ventures for the modern age.">
+    <meta property="og:type" content="website">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,13 +24,14 @@
 
         :root {
             --bg: #09090b;
-            --bg-elevated: #18181b;
+            --bg-elevated: #131316;
+            --bg-card: #101013;
             --text: #fafafa;
             --text-muted: #a1a1aa;
             --text-dim: #71717a;
-            --accent: #e4e4e7;
-            --border: #27272a;
+            --border: #1f1f23;
             --border-hover: #3f3f46;
+            --maxw: 1080px;
         }
 
         html {
@@ -43,169 +48,355 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient background glows */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::before {
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            left: -150px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.10), transparent 70%);
+        }
+
+        body::after {
+            width: 500px;
+            height: 500px;
+            bottom: -150px;
+            right: -120px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.07), transparent 70%);
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(9, 9, 11, 0.6);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        header.scrolled {
+            border-bottom-color: var(--border);
+        }
+
+        .nav {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 1.1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .brand svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .brand-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-cta {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+            background: var(--bg-elevated);
         }
 
         main {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 3rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
             width: 100%;
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 5rem 2rem 4rem;
         }
 
+        /* Hero */
         .hero {
             text-align: center;
             margin-bottom: 5rem;
         }
 
-        .wordmark {
-            display: flex;
+        .eyebrow {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            margin-bottom: 1.75rem;
             opacity: 0;
             animation: fadeUp 0.8s ease forwards;
         }
 
-        .logo-m {
-            width: 56px;
-            height: 56px;
-            position: relative;
+        .eyebrow .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
         }
 
-        .logo-m svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .company-name {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
             font-weight: 600;
-            letter-spacing: -0.02em;
-            color: var(--text);
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 1.25rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.1s forwards;
         }
 
-        .tagline {
-            font-size: 1.125rem;
+        .hero h1 .gradient {
+            background: linear-gradient(120deg, #fafafa 30%, #a5b4fc 60%, #f9a8d4 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1.05rem, 2.5vw, 1.25rem);
             font-weight: 400;
             color: var(--text-muted);
-            letter-spacing: 0.02em;
+            max-width: 620px;
+            margin: 0 auto;
             opacity: 0;
-            animation: fadeUp 0.8s ease 0.15s forwards;
+            animation: fadeUp 0.8s ease 0.25s forwards;
         }
 
-        .ventures {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1px;
-            background: var(--border);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            width: 100%;
-            max-width: 900px;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.3s forwards;
-        }
-
-        .venture {
-            text-decoration: none;
-            color: var(--text);
-            padding: 2.5rem 2rem;
-            background: var(--bg);
-            transition: all 0.25s ease;
+        /* Section heading */
+        .section-head {
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.35s forwards;
         }
 
-        .venture:hover {
-            background: var(--bg-elevated);
-        }
-
-        .venture-name {
-            font-size: 1.25rem;
+        .section-head h2 {
+            font-size: 1.05rem;
             font-weight: 600;
             letter-spacing: -0.01em;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .venture-name::after {
-            content: '';
-            width: 16px;
-            height: 16px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2371717a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 17L17 7M17 7H7M17 7v10'/%3E%3C/svg%3E");
-            background-size: contain;
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: all 0.25s ease;
-        }
-
-        .venture:hover .venture-name::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .venture-desc {
-            font-size: 0.9375rem;
-            color: var(--text-dim);
-            font-weight: 400;
-        }
-
-        .contact {
-            margin-top: 4rem;
-            text-align: center;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.45s forwards;
-        }
-
-        .contact-label {
+        .section-head span {
             font-size: 0.8125rem;
             color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
         }
 
-        .contact a {
-            color: var(--text);
+        /* Ventures grid */
+        .ventures {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .venture {
+            position: relative;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.2s ease;
+            color: var(--text);
+            padding: 1.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
         }
 
-        .contact a:hover {
+        .venture:nth-child(1) { animation-delay: 0.45s; --accent: #818cf8; }
+        .venture:nth-child(2) { animation-delay: 0.55s; --accent: #34d399; }
+        .venture:nth-child(3) { animation-delay: 0.65s; --accent: #f472b6; }
+        .venture:nth-child(4) { animation-delay: 0.75s; --accent: #fbbf24; }
+
+        .venture::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(400px circle at top right, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .venture:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            background: var(--bg-elevated);
+        }
+
+        .venture:hover::before {
+            opacity: 1;
+        }
+
+        .venture-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .venture-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--accent) 12%, transparent);
+        }
+
+        .venture-arrow {
+            width: 18px;
+            height: 18px;
+            color: var(--text-dim);
+            transform: translate(-4px, 4px);
+            opacity: 0;
+            transition: all 0.25s ease;
+        }
+
+        .venture:hover .venture-arrow {
+            opacity: 1;
+            transform: translate(0, 0);
+            color: var(--text);
+        }
+
+        .venture-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin-top: 0.25rem;
+        }
+
+        .venture-desc {
+            font-size: 0.95rem;
             color: var(--text-muted);
+            font-weight: 400;
         }
 
-        footer {
-            padding: 2rem;
-            text-align: center;
+        .venture-domain {
+            margin-top: auto;
+            padding-top: 0.75rem;
             font-size: 0.8125rem;
             color: var(--text-dim);
+            font-weight: 500;
+        }
+
+        /* Contact band */
+        .contact {
+            margin-top: 5rem;
+            text-align: center;
+            padding: 3rem 2rem;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: linear-gradient(180deg, var(--bg-card), var(--bg));
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.85s forwards;
+        }
+
+        .contact h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact p {
+            color: var(--text-muted);
+            margin-bottom: 1.75rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--bg);
+            background: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.8rem 1.6rem;
+            border-radius: 10px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(250, 250, 250, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 2rem;
             border-top: 1px solid var(--border);
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: var(--maxw);
             margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.25rem;
+            font-size: 0.8125rem;
+            color: var(--text-dim);
         }
 
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            gap: 1.75rem;
         }
 
         footer a {
@@ -221,85 +412,112 @@
         .footer-info {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            gap: 0.2rem;
+            text-align: right;
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
             }
         }
 
-        @media (max-width: 640px) {
-            main {
-                padding: 2rem 1rem;
-            }
-
-            .wordmark {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .logo-m {
-                width: 48px;
-                height: 48px;
-            }
-
-            .ventures {
-                grid-template-columns: 1fr;
-            }
-
-            .venture {
-                padding: 2rem 1.5rem;
-            }
-
-            .footer-links {
-                flex-wrap: wrap;
-                gap: 1rem 2rem;
-            }
+        @media (max-width: 720px) {
+            main { padding: 3rem 1.25rem; }
+            .nav { padding: 1rem 1.25rem; }
+            .ventures { grid-template-columns: 1fr; }
+            .hero { margin-bottom: 3.5rem; }
+            .footer-content { flex-direction: column; align-items: flex-start; }
+            .footer-info { text-align: left; }
         }
     </style>
 </head>
 <body>
+    <header id="header">
+        <nav class="nav">
+            <a href="/" class="brand" aria-label="MAXIMON home">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="54" height="54" rx="12" stroke="#3f3f46" stroke-width="1.5"/>
+                    <path d="M14 42V18L28 32L42 18V42" stroke="#fafafa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 18L28 32L42 18" stroke="#fafafa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-name">MAXIMON</span>
+            </a>
+            <a href="mailto:info@maximon.biz" class="nav-cta">Get in touch</a>
+        </nav>
+    </header>
+
     <main>
-        <div class="hero">
-            <div class="wordmark">
-                <div class="logo-m">
-                    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="54" height="54" rx="12" stroke="#3f3f46" stroke-width="1.5"/>
-                        <path d="M14 42V18L28 32L42 18V42" stroke="#fafafa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M14 18L28 32L42 18" stroke="#fafafa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <span class="company-name">MAXIMON</span>
+        <section class="hero">
+            <span class="eyebrow"><span class="dot"></span>Creative holding company</span>
+            <h1>Building digital ventures<br><span class="gradient">for the modern age.</span></h1>
+            <p>MAXIMON LLC creates, operates, and grows a portfolio of software and creative companies — solving real problems with thoughtful design and technology.</p>
+        </section>
+
+        <section aria-labelledby="ventures-heading">
+            <div class="section-head">
+                <h2 id="ventures-heading">Our ventures</h2>
+                <span>Portfolio</span>
             </div>
-            <p class="tagline">Creative Problem Solving for the Digital Age</p>
-        </div>
 
-        <div class="ventures">
-            <a href="https://chipahauk.com" target="_blank" rel="noopener noreferrer" class="venture">
-                <div class="venture-name">Chipahauk</div>
-                <div class="venture-desc">Web & Graphic Design</div>
-            </a>
-            <a href="https://chipahost.com" target="_blank" rel="noopener noreferrer" class="venture">
-                <div class="venture-name">Chipahost</div>
-                <div class="venture-desc">Web Hosting Solutions</div>
-            </a>
-            <a href="https://playt.app" target="_blank" rel="noopener noreferrer" class="venture">
-                <div class="venture-name">Playt</div>
-                <div class="venture-desc">AI Food Photography</div>
-            </a>
-        </div>
+            <div class="ventures">
+                <a href="https://wraptor.io" target="_blank" rel="noopener noreferrer" class="venture">
+                    <div class="venture-top">
+                        <span class="venture-tag">Software</span>
+                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                    <div class="venture-name">Wraptor</div>
+                    <div class="venture-desc">All-in-one platform for vehicle wrap shops — CRM, lead generation, AI design studio, and the installer network.</div>
+                    <div class="venture-domain">wraptor.io</div>
+                </a>
 
-        <div class="contact">
-            <div class="contact-label">Get in touch</div>
-            <a href="mailto:info@maximon.biz">info@maximon.biz</a>
-        </div>
+                <a href="https://chipahost.com" target="_blank" rel="noopener noreferrer" class="venture">
+                    <div class="venture-top">
+                        <span class="venture-tag">Infrastructure</span>
+                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                    <div class="venture-name">Chipahost</div>
+                    <div class="venture-desc">Fast, reliable web hosting solutions for businesses and creators who need their sites always on.</div>
+                    <div class="venture-domain">chipahost.com</div>
+                </a>
+
+                <a href="https://chipahauk.com" target="_blank" rel="noopener noreferrer" class="venture">
+                    <div class="venture-top">
+                        <span class="venture-tag">Creative</span>
+                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                    <div class="venture-name">Chipahauk</div>
+                    <div class="venture-desc">Web and graphic design studio crafting brands, sites, and visual identities that stand out.</div>
+                    <div class="venture-domain">chipahauk.com</div>
+                </a>
+
+                <a href="https://stavryn.com" target="_blank" rel="noopener noreferrer" class="venture">
+                    <div class="venture-top">
+                        <span class="venture-tag">Venture</span>
+                        <svg class="venture-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                    <div class="venture-name">Stavryn</div>
+                    <div class="venture-desc">The newest addition to the MAXIMON portfolio. Visit the site to learn more.</div>
+                    <div class="venture-domain">stavryn.com</div>
+                </a>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2>Let's build something.</h2>
+            <p>Partnerships, press, or just curious about what we're working on? We'd love to hear from you.</p>
+            <a href="mailto:info@maximon.biz" class="contact-btn">
+                info@maximon.biz
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </section>
     </main>
 
     <footer>
@@ -310,9 +528,16 @@
             </div>
             <div class="footer-info">
                 <span>227 Penn Ave, Edison, NJ 08817</span>
-                <span>&copy; 2025 MAXIMON LLC</span>
+                <span>&copy; 2026 MAXIMON LLC</span>
             </div>
         </div>
     </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    </script>
 </body>
 </html>
